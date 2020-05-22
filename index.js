@@ -16,15 +16,15 @@ const bot = linebot({
 })
 
 //  加入好友
-// bot.on('follow', async (event) => {
-//   let msg = ''
-//   try {
-//     msg = '哈囉囉囉~感謝你加我好友\nLOVE YOU~'
-//   } catch (error) {
-//     msg = 'Oops!發生錯誤'
-//   }
-//   event.reply(msg)
-// })
+bot.on('follow', async (event) => {
+  let msg = ''
+  try {
+    msg = '哈囉囉囉~感謝你加我好友\nLOVE YOU~'
+  } catch (error) {
+    msg = 'Oops!發生錯誤'
+  }
+  event.reply(msg)
+})
 
 // 當收到訊息時
 const getKind = async (kind) => {
@@ -75,10 +75,11 @@ const getKind = async (kind) => {
     }
 
     )
-    console.log(all[rand].shelter_tel)
-    console.log(all[rand].animal_place)
-    console.log(all[rand].album_file)
+    // console.log(all[rand].shelter_tel)
+    // console.log(all[rand].animal_place)
+    // console.log(all[rand].album_file)
   } catch (error) {
+    console.log(error.message)
     msg = 'Oops!\u{100085}\u{100085}\n要輸入\n狗\u{10005E}或貓\u{10005F}喔!'
   }
   // console.log(msg)
@@ -91,35 +92,9 @@ bot.on('message', async (event) => {
   if (event.message.type === 'text') {
     msg = await getKind(event.message.text)
   }
-  console.log(msg)
+  // console.log(msg)
   event.reply(msg)
 })
-
-// bot.on('message', async (event) => {
-//   search = event.message.text
-//   let msg = ''
-//   if (event.message.type === 'text') {
-//     if (search.includes('品種')) {
-//       msg = await getKind(search.substr(0, 1))
-//     } else {
-//       await getImg()
-//       msg = ad
-//     }
-//   }
-//   console.log(msg)
-//   event.reply(msg)
-// })
-
-// bot.on('message', async (event) => {
-//   let msg = ''
-//   try {
-//     const data = await rp({ uri: 'https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=QcbUEzN6E6DL', json: true })
-//     msg = data[0].shelter_name
-//   } catch (error) {
-//     msg = 'Oops!發生錯誤'
-//   }
-//   event.reply(msg)
-// })
 
 // 在PORT 啟動
 bot.listen('/', process.env.PORT, () => {
