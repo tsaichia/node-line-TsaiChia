@@ -5,6 +5,8 @@ import dotenv from 'dotenv'
 //  引用 request-promise 套件
 import rp from 'request-promise'
 
+import schedule from 'node-schedule'
+
 // 讀取 .env 檔
 dotenv.config()
 
@@ -26,20 +28,24 @@ bot.on('follow', async (event) => {
   event.reply(msg)
 })
 
+let data = {}
+const getData = async () => {
+  data = await rp({ uri: 'https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=QcbUEzN6E6DL', json: true })
+  getKind('貓')
+}
+
+getData()
+console.log(data)
+
+schedule.scheduleJob('0 0 0 * *', getData())
+
 // 當收到訊息時
 const getKind = async (kind) => {
   const arr = []
   const arr2 = []
   let msg = []
-  const a = [{ aa: 'aa', bb: 'bb' }, { cc: 'cc', dd: 'dd' }]
 
-  a.filter(function (x) {
-    return x.aa === 'aa'
-  })
-  // console.log(b)
   try {
-    const data = await rp({ uri: 'https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=QcbUEzN6E6DL', json: true })
-
     const all = data.filter(function (x) {
       // console.log(x.animal_kind)
       return x.animal_kind === kind
@@ -75,17 +81,16 @@ const getKind = async (kind) => {
     }
 
     )
-    // console.log(all[rand].shelter_tel)
-    // console.log(all[rand].animal_place)
-    // console.log(all[rand].album_file)
+    console.log(all[rand].shelter_tel)
+    console.log(all[rand].animal_place)
+    console.log(all[rand].album_file)
   } catch (error) {
-    console.log(error.message)
+    console.log(error)
     msg = 'Oops!\u{100085}\u{100085}\n要輸入\n狗\u{10005E}或貓\u{10005F}喔!'
   }
   // console.log(msg)
   return msg
 }
-getKind('貓')
 
 bot.on('message', async (event) => {
   let msg = ''
