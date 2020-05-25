@@ -35,7 +35,6 @@ const getData = async () => {
 }
 
 getData()
-console.log(data)
 
 schedule.scheduleJob('0 0 0 * *', getData())
 
@@ -81,11 +80,11 @@ const getKind = async (kind) => {
     }
 
     )
-    console.log(all[rand].shelter_tel)
-    console.log(all[rand].animal_place)
-    console.log(all[rand].album_file)
+    // console.log(all[rand].shelter_tel)
+    // console.log(all[rand].animal_place)
+    // console.log(all[rand].album_file)
   } catch (error) {
-    console.log(error)
+    // console.log(error)
     msg = 'Oops!\u{100085}\u{100085}\n要輸入\n狗\u{10005E}或貓\u{10005F}喔!'
   }
   // console.log(msg)
