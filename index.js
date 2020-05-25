@@ -18,15 +18,15 @@ const bot = linebot({
 })
 
 //  加入好友
-// bot.on('follow', async (event) => {
-//   let msg = ''
-//   try {
-//     msg = '哈囉囉囉~感謝你加我好友\nLOVE YOU~'
-//   } catch (error) {
-//     msg = 'Oops!發生錯誤'
-//   }
-//   event.reply(msg)
-// })
+bot.on('follow', async (event) => {
+  let msg = ''
+  try {
+    msg = '哈囉囉囉~感謝你加我好友\nLOVE YOU~'
+  } catch (error) {
+    msg = 'Oops!發生錯誤'
+  }
+  event.reply(msg)
+})
 
 let data = {}
 const getData = async () => {
@@ -35,6 +35,7 @@ const getData = async () => {
 }
 
 getData()
+console.log(data)
 
 schedule.scheduleJob('0 0 0 * *', getData())
 
@@ -80,11 +81,11 @@ const getKind = async (kind) => {
     }
 
     )
-    // console.log(all[rand].shelter_tel)
-    // console.log(all[rand].animal_place)
-    // console.log(all[rand].album_file)
+    console.log(all[rand].shelter_tel)
+    console.log(all[rand].animal_place)
+    console.log(all[rand].album_file)
   } catch (error) {
-    // console.log(error)
+    console.log(error)
     msg = 'Oops!\u{100085}\u{100085}\n要輸入\n狗\u{10005E}或貓\u{10005F}喔!'
   }
   // console.log(msg)
