@@ -18,15 +18,15 @@ const bot = linebot({
 })
 
 //  加入好友
-bot.on('follow', async (event) => {
-  let msg = ''
-  try {
-    msg = '哈囉囉囉~感謝你加我好友\nLOVE YOU~'
-  } catch (error) {
-    msg = 'Oops!發生錯誤'
-  }
-  event.reply(msg)
-})
+// bot.on('follow', async (event) => {
+//   let msg = ''
+//   try {
+//     msg = '哈囉囉囉~感謝你加我好友\nLOVE YOU~'
+//   } catch (error) {
+//     msg = 'Oops!發生錯誤'
+//   }
+//   event.reply(msg)
+// })
 
 let data = {}
 const getData = async () => {
